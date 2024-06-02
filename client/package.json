@@ -1,0 +1,19 @@
+{
+  "type": "module",
+  "name": "altv-cef-menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsc"
+  },
+  "author": "Flashrex",
+  "license": "ISC",
+  "devDependencies": {
+    "@altv/types-client": "^16.2.2",
+    "@altv/types-natives": "^16.2.0",
+    "@altv/types-shared": "^16.2.1",
+    "@altv/types-webview": "^16.2.1",
+    "typescript": "^5.4.5"
+  }
+}
