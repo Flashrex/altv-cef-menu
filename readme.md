@@ -16,7 +16,7 @@ or `download this repo` and edit/compile the files yourself.
 
 ## 1.1 Install Menu-Builder from latest release
 
-1. Download the latest release directly here on github.
+1. Download the latest release file (altv-cef-menu.rar) directly here on github.
 2. Copy everything from the `cef-menu` directory to your `resources` in your altv-server directory
 3. Include the resource in your `server.toml` file
 
