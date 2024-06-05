@@ -1,4 +1,6 @@
 
+![preview](https://github.com/Flashrex/altv-cef-menu/blob/master/public/image.png?raw=true)
+
 # alt:V CEF Menu
 
 This resource is a menu builder written in Typescript using Vue 3.
