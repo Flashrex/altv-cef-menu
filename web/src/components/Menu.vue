@@ -194,6 +194,12 @@ function removeItem(id: number) {
     if (items.value.length === 0) currentItem.value = null;
 }
 
+function clearItems() {
+    items.value = [];
+    currentItem.value = null;
+    curIndex.value = 0;
+}
+
 function toggleMenu(state: boolean) {
     isVisible.value = state;
 }
@@ -228,6 +234,7 @@ if ('alt' in window) {
 
     alt.on('view:add-item', addItem);
     alt.on('view:remove-item', removeItem);
+    alt.on('view:clear-items', clearItems);
 
     alt.on('view:open-menu', () => toggleMenu(true));
     alt.on('view:close-menu', () => toggleMenu(false));

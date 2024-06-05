@@ -1,6 +1,7 @@
 export const WEBVIEW_EVENTS = {
     ADD_ITEM: 'view:add-item',
     REMOVE_ITEM: 'view:remove-item',
+    CLEAR_ITEMS: 'view:clear-items',
     OPEN_MENU: 'view:open-menu',
     CLOSE_MENU: 'view:close-menu',
     SET_TITLE: 'view:set-title',

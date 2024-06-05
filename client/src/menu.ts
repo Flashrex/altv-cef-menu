@@ -32,6 +32,7 @@ export class Menu {
     
     private _items: { [id: string]: Item };
     private _parent: Menu | null;
+    private _subMenus: { [id: string]: Menu } = {};
 
     private _selectHandler: MenuSelectCallback[] = [];
     private _closeHandler: MenuCloseCallback[] = [];
@@ -51,6 +52,11 @@ export class Menu {
 
         const item = menu.getItem(item_id)
         if(!item) return;
+
+        if(menu._subMenus[item_id]) {
+            menu._subMenus[item_id].open();
+            return;
+        }
 
         if(item instanceof MenuItem) {
             menu.selectCallbacks.forEach(callback => {
@@ -178,9 +184,6 @@ export class Menu {
         this._parent = null;
         this._isVisible = false;
         this.registerEvents();
-
-        if(Menu.instance) Menu.instance.close();
-        Menu.instance = this;
     }
 
     private registerEvents() {
@@ -210,6 +213,14 @@ export class Menu {
         }
     }
 
+    clearItems(onlyView = false) {
+        if(!onlyView) this._items = {};
+
+        if(this._isVisible) {
+            webview.emit(WEBVIEW_EVENTS.CLEAR_ITEMS);
+        }
+    }
+
     getItem(id: string) {
         return this._items[id];
     }
@@ -219,6 +230,8 @@ export class Menu {
     }
 
     open() {
+        if(Menu.instance) Menu.instance.close();
+        Menu.instance = this;
         this._isVisible = true;
 
         webview.emit(WEBVIEW_EVENTS.SET_TITLE, this._title);
@@ -234,9 +247,14 @@ export class Menu {
     }
 
     close() {
+        this.clearItems(true);
         this._isVisible = false;
 
         webview.emit(WEBVIEW_EVENTS.CLOSE_MENU);
+
+        this.closeCallbacks.forEach(callback => {
+            callback();
+        });
     }
 
     get visible() {
@@ -247,7 +265,7 @@ export class Menu {
         if(!this._items[itemToBind.id]) return;
         
         menu._parent = this;
-        //itemToBind.menu = menu;
+        this._subMenus[itemToBind.id] = menu;
     }
 
     get parent() {
@@ -384,8 +402,8 @@ alt.on('keydown', (key) => {
 
         
         case 8: //Backspace
-            Menu.getInstance()?.close();
             if(Menu.getInstance()?.parent) Menu.getInstance()?.parent.open();
+            else Menu.getInstance()?.close();
             playSound("BACK");
             break;
 
