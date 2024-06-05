@@ -141,7 +141,9 @@ menu.open();
   - `onSliderChange : (item: SliderItem, newValue: string)`
   - `onColorChange : (item: ColorItem, newColor: alt.RGBA)`
   - `onClose : ()`
-
+  
+  
+  
 `new MenuItem(text: string, description: string = "", icon: string = undefined)`
 
 `icon` takes any Material Design Icon Name as string.
@@ -154,17 +156,22 @@ If you dont want to use icons just call the contructor using an empty string as 
   - `title {get; set;}`
   - `description {get; set;}`
   - `icon {get; set;}`
-
+  
+  
+  
 `new CheckboxItem(text: string, description: string = "", checked: boolean = false, icon: string = undefined)` extends `MenuItem`
 
 - Variables
   - `checked {get; set;} : boolean`
+  
+  
 
 `new ListItem(text: string, description: string = "", items: string[] = [], icon: string = undefined)` extends `MenuItem`
 
 - Variables
   - `items {get; set;} : string[]`
   - `value {get; set;} : string`
+  
 
 
 `new SliderItem(text: string, description: string = "", value: number = 0.5, icon: string = undefined)` extends `MenuItem`
@@ -173,19 +180,25 @@ Value ranges between 0 and 1. Steps are 0.05.
 
 - Variables
   - `value {get; set;} : number`
+  
+
 
 `new InputItem(text: string, description: string = "", value: string = "", placeholder: string = "", icon: string = undefined)` extends `MenuItem`
 
 - Variables
   - `value {get; set;} : string`
   - `placeholder {get; set;} : string`
+  
+
 
 `new ColorItem(text: string, description: string = "", value: alt.RGBA = new alt.RGBA(0, 0, 0, 255), icon: string = undefined)` extends `MenuItem`
 
 - Variables
   - `value {get; set;} : alt.RGBA`
   - `valueHex {get; set;} : string //Color as hex-string -> #ffffff`
+  
 
+  
 `new Point(x: number, y: number)`
 
 Values range between 0 and 1 where 0 is left/top of the screen and 1 is right/bottom of the screen.
