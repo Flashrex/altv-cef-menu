@@ -1,29 +1,16 @@
 import { Item } from "./item.js";
-import { Menu } from "../menu.js";
 
 export class MenuItem implements Item {
     private _id: string;
     private _text: string;
+    private _description: string;
     private _icon: string;
-    private _menu: Menu | null;
 
-    static onSelect(item_id: string, index: number) : void {
-        const menu = Menu.getInstance();
-        if(!menu) return;
-
-        const item = menu.getItem(item_id)
-        if(!item) return;
-
-        menu.selectCallbacks.forEach(callback => {
-            callback(item, index);
-        });
-    }
-
-    constructor(text: string, icon: string = "") {
-        this._id = "";
+    constructor(text: string, description: string = "", icon: string = undefined) {
+        this._id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        this._description = description;
         this._text = text;
-        this._icon = icon;
-        this._menu = Menu.getInstance();
+        this._icon = icon ? icon : 'mdi-menu';
     }
 
     set id(id: string) {
@@ -42,6 +29,14 @@ export class MenuItem implements Item {
         return this._text;
     }
 
+    set description(description: string) {
+        this._description = description;
+    }
+
+    get description(): string {
+        return this._description;
+    }
+
     set icon(icon: string) {
         this._icon = icon;
     }
@@ -50,19 +45,12 @@ export class MenuItem implements Item {
         return this._icon;
     }
 
-    set menu(menu: Menu) {
-        this._menu = menu;
-    }
-
-    get menu(): Menu {
-        return this._menu;
-    }
-
     toJson(): object {
         return {
             id: this.id,
-            type: "item",
+            type: 'item',
             text: this.title,
+            description: this.description,
             icon: this.icon,
         };
     }

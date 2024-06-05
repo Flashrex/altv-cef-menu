@@ -3,11 +3,13 @@ import { MenuItem } from "./menuitem.js";
 export class InputItem extends MenuItem {
     private _value: string;
     private _placeholder: string;
+    private _active: boolean = false;
 
-    constructor(text: string, value: string = "", placeholder: string = "", icon: string = "") {
-        super(text, icon);
+    constructor(text: string, description: string = "", value: string = "", placeholder: string = "", icon: string = "") {
+        super(text, description, icon);
         this._value = value;
         this._placeholder = placeholder;
+        this.icon = icon ? icon : 'mdi-form-textbox';
     }
 
     set value(value: string) {
@@ -24,6 +26,14 @@ export class InputItem extends MenuItem {
 
     get placeholder(): string {
         return this._placeholder;
+    }
+
+    set active(active: boolean) {
+        this._active = active;
+    }
+
+    get active(): boolean {
+        return this._active;
     }
 
     toJson(): object {
