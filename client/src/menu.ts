@@ -163,6 +163,7 @@ export class Menu {
         if(!item) return;
 
         if(item instanceof ColorItem) {
+            if(item.active === active) return;
             item.active = active;
 
             alt.toggleGameControls(!active);
