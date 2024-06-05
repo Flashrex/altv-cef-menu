@@ -1,5 +1,7 @@
 
-![preview](https://github.com/Flashrex/altv-cef-menu/blob/master/public/image.png?raw=true)
+<p align="center">
+<img src="https://raw.githubusercontent.com/Flashrex/altv-cef-menu/master/images/image.png" />
+</p>
 
 # alt:V CEF Menu
 
