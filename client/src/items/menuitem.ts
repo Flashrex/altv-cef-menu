@@ -13,10 +13,6 @@ export class MenuItem implements Item {
         this._icon = icon ? icon : 'mdi-menu';
     }
 
-    set id(id: string) {
-        this._id = id;
-    }
-
     get id(): string {
         return this._id;
     }

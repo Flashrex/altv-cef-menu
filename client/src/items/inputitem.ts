@@ -5,7 +5,7 @@ export class InputItem extends MenuItem {
     private _placeholder: string;
     private _active: boolean = false;
 
-    constructor(text: string, description: string = "", value: string = "", placeholder: string = "", icon: string = "") {
+    constructor(text: string, description: string = "", value: string = "", placeholder: string = "", icon: string = undefined) {
         super(text, description, icon);
         this._value = value;
         this._placeholder = placeholder;

@@ -3,7 +3,7 @@ import { MenuItem } from "./menuitem.js";
 export class CheckboxItem extends MenuItem {
     private _checked: boolean;
 
-    constructor(text: string, description: string = "", checked: boolean, icon: string = "") {
+    constructor(text: string, description: string = "", checked: boolean = false, icon: string = undefined) {
         super(text, description, icon);
         this._checked = checked;
         this.icon = icon ? icon : 'mdi-checkbox-marked';

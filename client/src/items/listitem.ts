@@ -4,7 +4,7 @@ export class ListItem extends MenuItem {
     private _items: string[];
     private _value: string;
 
-    constructor(text: string, description: string = "", items: string[] = [], icon: string = "") {
+    constructor(text: string, description: string = "", items: string[] = [], icon: string = undefined) {
         super(text, description, icon);
         this._items = items;
         this._value = items[0];

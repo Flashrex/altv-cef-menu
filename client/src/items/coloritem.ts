@@ -5,7 +5,7 @@ export class ColorItem extends MenuItem {
     private _value: string;
     private _active: boolean = false;
 
-    constructor(text: string, description: string = "", value: alt.RGBA = new alt.RGBA(0, 0, 0, 255), icon: string = "") {
+    constructor(text: string, description: string = "", value: alt.RGBA = new alt.RGBA(0, 0, 0, 255), icon: string = undefined) {
         super(text, description, icon);
         this._value = this.toHexColor(value);
         this.icon = icon ? icon : 'mdi-format-color-fill';
@@ -27,11 +27,11 @@ export class ColorItem extends MenuItem {
         return this._active;
     }
 
-    set ValueHex(value: string) {
+    set valueHex(value: string) {
         this._value = value;
     }
 
-    get ValueHex(): string {
+    get valueHex(): string {
         return this._value;
     }
 
@@ -56,7 +56,7 @@ export class ColorItem extends MenuItem {
         return {
             ...super.toJson(),
             type: "color",
-            value: this.ValueHex
+            value: this.valueHex
         };
     }
 }
