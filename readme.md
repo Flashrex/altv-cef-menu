@@ -47,7 +47,7 @@ I did not test older version and do not provide support for it!
 
 # 2. Example Script
 
-```
+```javascript
 import { MenuItem } from "./items/menuitem.js";
 import { Menu, Point } from "./menu.js";
 import { CheckboxItem } from './items/checkboxitem.js';
