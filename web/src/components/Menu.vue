@@ -2,11 +2,11 @@
 import { computed, onMounted, ref } from 'vue';
 
 const sliderStep = 0.05;
-const isVisible = ref(true);
+const isVisible = ref(false);
 const inputRefs = ref([] as any);
 
 const header = ref({
-    title: "CEF Menu",
+    title: "",
     subtitle: "",
     color: { r: 12, g: 122, b: 55, a: 155 }
 });
@@ -51,6 +51,7 @@ function navigateDown() {
     }
 
     currentItem.value = items.value[curIndex.value];
+    if ('alt' in window) alt.emit('view:index-change', currentItem.value.id, curIndex.value);
 }
 
 function navigateUp() {
@@ -61,6 +62,7 @@ function navigateUp() {
     }
 
     currentItem.value = items.value[curIndex.value];
+    if ('alt' in window) alt.emit('view:index-change', currentItem.value.id, curIndex.value);
 }
 
 function navigateLeft() {

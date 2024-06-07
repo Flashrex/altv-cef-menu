@@ -15,6 +15,7 @@ const webview = new alt.WebView('http://assets/cef-menu/dist/index.html');
 
 type MenuSelectCallback = (item: Item, index: number) => void;
 type MenuCloseCallback = () => void;
+type IndexChangeCallback = (item: Item, index: number) => void;
 type CheckboxChangeCallback = (item: CheckboxItem, checked: boolean) => void;
 type InputChangeCallback = (item: InputItem, newValue: string) => void;
 type ListChangeCallback = (item: ListItem, newSelected: string, oldSelected: string) => void;
@@ -36,6 +37,7 @@ export class Menu {
 
     private _selectHandler: MenuSelectCallback[] = [];
     private _closeHandler: MenuCloseCallback[] = [];
+    private _indexChangeHandler: IndexChangeCallback[] = [];
     private _checkboxChangeHandler: CheckboxChangeCallback[] = [];
     private _inputChangeHandler: InputChangeCallback[] = [];
     private _listChangeHandler: ListChangeCallback[] = [];
@@ -63,6 +65,18 @@ export class Menu {
                 callback(item, index);
             });
         }
+    }
+
+    static onIndexChange(item_id: string, index: number) {
+        const menu = Menu.getInstance();
+        if(!menu) return;
+
+        const item = menu.getItem(item_id);
+        if(!item) return;
+
+        menu._indexChangeHandler.forEach(callback => {
+            callback(item, index);
+        });
     }
 
     static onCheckboxChanged(item_id: string, checked: boolean) {
@@ -189,6 +203,7 @@ export class Menu {
 
     private registerEvents() {
         webview.on(WEBVIEW_EVENTS.SELECT, Menu.onSelect);
+        webview.on(WEBVIEW_EVENTS.INDEX_CHANGE, Menu.onIndexChange);
         webview.on(WEBVIEW_EVENTS.CHECKBOX_CHANGE, Menu.onCheckboxChanged);
         webview.on(WEBVIEW_EVENTS.INPUT_CHANGE, Menu.onInputChanged);
         webview.on(WEBVIEW_EVENTS.LIST_CHANGE, Menu.onListChanged);
@@ -335,6 +350,14 @@ export class Menu {
 
     get closeCallbacks() {
         return this._closeHandler;
+    }
+
+    onIndexChange(callback: IndexChangeCallback) {
+        this._indexChangeHandler.push(callback);
+    }
+
+    get indexChangeCallbacks() {
+        return this._indexChangeHandler;
     }
 
     onCheckboxChange(callback: CheckboxChangeCallback) {

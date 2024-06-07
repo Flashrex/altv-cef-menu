@@ -15,6 +15,7 @@ export const WEBVIEW_EVENTS = {
     MOVE_RIGHT: 'view:move-right',
 
     SELECT: 'view:select',
+    INDEX_CHANGE: 'view:index-change',
     INPUT_SET_ACTIVE: 'view:input-setactive',
     COLOR_SET_ACTIVE: 'view:color-setactive',
     BACK: 'view:back',
