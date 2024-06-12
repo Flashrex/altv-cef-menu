@@ -135,6 +135,7 @@ menu.open();
 
 - Events
   - `onSelect : (item: MenuItem, index: number)`
+  - `onIndexChange : (item: Item, index: number)`
   - `onCheckboxChange : (item: CheckboxItem, checked: boolean)`
   - `onInputChange : (item: InputItem, newValue: string)`
   - `onListChange : (item: ListItem, newSelected: string, oldSelected: string)`
