@@ -6,7 +6,7 @@ export class CheckboxItem extends MenuItem {
     constructor(text: string, description: string = "", checked: boolean = false, icon: string = undefined) {
         super(text, description, icon);
         this._checked = checked;
-        this.icon = icon ? icon : 'mdi-checkbox-marked';
+        this.icon = icon !== undefined ? icon : 'mdi-checkbox-marked';
     }
 
     set checked(checked: boolean) {

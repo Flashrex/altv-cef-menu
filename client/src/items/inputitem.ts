@@ -9,7 +9,7 @@ export class InputItem extends MenuItem {
         super(text, description, icon);
         this._value = value;
         this._placeholder = placeholder;
-        this.icon = icon ? icon : 'mdi-form-textbox';
+        this.icon = icon !== undefined ? icon : 'mdi-form-textbox';
     }
 
     set value(value: string) {

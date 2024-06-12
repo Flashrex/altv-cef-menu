@@ -6,7 +6,7 @@ export class SliderItem extends MenuItem {
     constructor(text: string, description: string = "", value: number = 0.5, icon: string = undefined) {
         super(text, description, icon);
         this._value = this.clamp(value);
-        this.icon = icon ? icon : 'mdi-tune-variant';
+        this.icon = icon !== undefined ? icon : 'mdi-tune-variant';
     }
 
     set value(value: number) {

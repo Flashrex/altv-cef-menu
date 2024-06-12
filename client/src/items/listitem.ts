@@ -8,7 +8,7 @@ export class ListItem extends MenuItem {
         super(text, description, icon);
         this._items = items;
         this._value = items[0];
-        this.icon = icon ? icon : 'mdi-format-list-bulleted';
+        this.icon = icon !== undefined ? icon : 'mdi-format-list-bulleted';
     }
 
     set items(items: string[]) {

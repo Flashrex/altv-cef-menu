@@ -8,7 +8,7 @@ export class ColorItem extends MenuItem {
     constructor(text: string, description: string = "", value: alt.RGBA = new alt.RGBA(0, 0, 0, 255), icon: string = undefined) {
         super(text, description, icon);
         this._value = this.toHexColor(value);
-        this.icon = icon ? icon : 'mdi-format-color-fill';
+        this.icon = icon !== undefined ? icon : 'mdi-format-color-fill';
     }
 
     set value(color: alt.RGBA) {
