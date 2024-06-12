@@ -19,7 +19,7 @@ if (!('alt' in window)) {
     items.value = [
         { id: '0', type: 'item', text: 'MenuItem', description: 'MenuItem Description', icon: 'mdi-menu' },
         { id: '1', type: 'checkbox', text: 'Checkbox', description: 'Checkbox Description', icon: 'mdi-checkbox-marked', checked: true },
-        { id: '2', type: 'input', text: 'Input', description: 'Input Description', icon: 'mdi-form-textbox', placeholder: 'Enter Text', value: '' },
+        { id: '2', type: 'input', text: 'Input', description: 'Input Description', icon: 'mdi-form-textbox', placeholder: 'Enter Text', value: 'test' },
         { id: '3', type: 'list', text: 'List', description: 'List Description', icon: 'mdi-format-list-bulleted', items: ['Item 1', 'Item 2', 'Item 3'], value: 'Item 1' },
         { id: '4', type: 'slider', text: 'Slider', description: 'Slider Description', icon: 'mdi-tune-variant', value: 0.5 },
         { id: '5', type: 'color', text: 'Color', description: 'Color Description', icon: 'mdi-format-color-fill', value: '#ff0000' }
@@ -145,8 +145,8 @@ function onSelect() {
 
             if (input === document.activeElement) {
                 if ('alt' in window) {
-                    alt.emit('view:input-change', item.id, item.value);
                     alt.emit('view:input-setactive', item.id, false);
+                    alt.emit('view:input-change', item.id, item.value);
                 }
                 input.blur();
                 return;
@@ -265,6 +265,7 @@ if (!('alt' in window)) {
             case 'Enter':
                 onSelect();
                 break;
+
         }
     });
 }

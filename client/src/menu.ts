@@ -213,6 +213,10 @@ export class Menu {
         webview.on(WEBVIEW_EVENTS.COLOR_SET_ACTIVE, Menu.onColorSetActive);
     }
 
+    get isInputActive() : boolean {
+        return Object.values(this._items).some(item => item instanceof InputItem && item.active);
+    }
+
     addItem(item: Item) {
         this._items[item.id] = item;
 
@@ -246,7 +250,7 @@ export class Menu {
     }
 
     open() {
-        if(Menu.instance) Menu.instance.close();
+        if(Menu.instance?.visible) Menu.instance.close();
         Menu.instance = this;
         this._isVisible = true;
 
@@ -426,6 +430,7 @@ alt.on('keydown', (key) => {
 
         
         case 8: //Backspace
+            if(Menu.getInstance()?.isInputActive) return;
             if(Menu.getInstance()?.parent) Menu.getInstance()?.parent.open();
             else Menu.getInstance()?.close();
             playSound("BACK");
